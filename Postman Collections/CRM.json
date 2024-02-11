@@ -1,0 +1,1390 @@
+{
+	"info": {
+		"_postman_id": "56c513bb-88ba-4e51-91f7-6db648187a9d",
+		"name": "CRM APP, Sprint #1 and #2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Leads API",
+			"item": [
+				{
+					"name": "Get the list of all leads (by default: 50)",
+					"id": "16a65f1c-77d3-415c-adc0-ddc5c0991970",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": null,
+									"description": "Number of items to fetch (maximum is 100). Default value : 50",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the list of all leads (limit must be <100)",
+					"id": "19498892-eb49-4e9a-abe0-f363bd0cd6e4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead?limit=1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1",
+									"description": "Number of items to fetch (maximum is 100). Default value : 50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the list of all leads (cursor by default: 0)",
+					"id": "c419af92-176f-4a83-a0fb-0b7327d7f7f6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead?cursor",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead"
+							],
+							"query": [
+								{
+									"key": "cursor",
+									"value": null,
+									"description": "Position to start from in the list. Default value : 0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the list of all leads (cursor  >0)",
+					"id": "f6b4a8d2-f34e-44a9-8774-45e7965416a5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead?cursor=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead"
+							],
+							"query": [
+								{
+									"key": "cursor",
+									"value": "10",
+									"description": "Position to start from in the list. Default value : 0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the list of all leads (sort field by company_text + asc-desc)",
+					"id": "5e72b1a0-a576-4be9-b00d-243992838cdf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead?sort_field=company_text&descending=false",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead"
+							],
+							"query": [
+								{
+									"key": "sort_field",
+									"value": "company_text",
+									"description": "Field to sort the list on"
+								},
+								{
+									"key": "sort_field",
+									"value": "full_name_text",
+									"description": "Field to sort the list on",
+									"disabled": true
+								},
+								{
+									"key": "sort_field",
+									"value": "email_text",
+									"description": "Field to sort the list on",
+									"disabled": true
+								},
+								{
+									"key": "descending",
+									"value": "false",
+									"description": "Sorting type: descending (true) or ascending (false)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the list of all leads (constraints)",
+					"id": "a1f89735-69bb-4018-9ab7-fd4db014a0d7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead?constraints=[{ \"key\": \"email_text\", \"constraint_type\": \"equals\", \"value\": \"ieva.karklina7@gmail.com\" }]",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead"
+							],
+							"query": [
+								{
+									"key": "constraints",
+									"value": "[{ \"key\": \"company_text\", \"constraint_type\": \"equals\", \"value\": \"Cummings Inc\" }]",
+									"description": "Search constraints",
+									"disabled": true
+								},
+								{
+									"key": "constraints",
+									"value": "[{ \"key\": \"Created By\", \"constraint_type\": \"equals\", \"value\": \"admin_user_cerebrumhubcrmlite_test\" }]",
+									"description": "Search constraints",
+									"disabled": true
+								},
+								{
+									"key": "constraints",
+									"value": "[{ \"key\": \"email_text\", \"constraint_type\": \"is_empty\" }]",
+									"description": "Search constraints",
+									"disabled": true
+								},
+								{
+									"key": "constraints",
+									"value": "[{ \"key\": \"full_name_text\", \"constraint_type\": \"text contains\", \"value\": \"Ieva\" }]",
+									"description": "Search constraints",
+									"disabled": true
+								},
+								{
+									"key": "constraints",
+									"value": "[{ \"key\": \"email_text\", \"constraint_type\": \"equals\", \"value\": \"ieva.karklina7@gmail.com\" }]",
+									"description": "Search constraints"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the list of all leads (no authorization)",
+					"id": "c3260dee-2d51-4d27-81dd-6f2c189cd6eb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead?limit=50",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "50",
+									"description": "Number of items to fetch (maximum is 100). Default value : 50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get lead data by unique Id",
+					"id": "86d9cb60-eafb-4b72-a4c8-dda902992064",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "13651c5e-b5ea-472c-9ca7-83c7033f55b3",
+									"key": "UniqueID",
+									"value": "1694793326924x403121337033923260",
+									"description": "Unique ID of the lead to retrieve."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new lead",
+					"id": "af86981d-09c1-4b1a-b638-fa18cbfe28ca",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\":\"{{$randomCompanyName}}\",\r\n\"email_text\":\"ieva.karklina7@gmail.com\",\r\n\"full_name_text\":\"{{$randomFullName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/obj/lead"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new lead (no company text)",
+					"id": "c8c6e015-ac62-4188-a75a-2c81c2e4ac79",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"email_text\":\"ieva.karklina7@gmail.com\",\r\n\"full_name_text\":\"{{$randomFullName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/obj/lead"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new lead (no email text)",
+					"id": "e2152f44-5cb5-435b-bef7-b454df7ef6e8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\":\"{{$randomCompanyName}}\",\r\n\"full_name_text\":\"{{$randomFullName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/obj/lead"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new lead (no full_name_text)",
+					"id": "e1a6ce32-fd41-4f06-9514-cd4efc053716",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\":\"{{$randomCompanyName}}\",\r\n\"email_text\":\"ieva.karklina7@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/obj/lead"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new lead (company text must be =<50)",
+					"id": "d1fa61a1-f23b-4776-bac2-7b331f5f55bd",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa51\",\r\n\"email_text\":\"ieva.karklina7@gmail.com\",\r\n\"full_name_text\":\"{{$randomFullName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/obj/lead"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new lead (email text must be =<100)",
+					"id": "b17644a6-7894-4476-8484-2b66a23e6552",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\":\"{{$randomCompanyName}}\",\r\n\"email_text\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh100.lv\",\r\n\"full_name_text\":\"{{$randomFullName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/obj/lead"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new lead (full name text must be =<50)",
+					"id": "c57a03a8-a0d7-49c8-87d4-22ceee0e1475",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\":\"{{$randomCompanyName}}\",\r\n\"email_text\":\"ieva.karklina7@gmail.com\",\r\n\"full_name_text\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa51\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/obj/lead"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new lead (no authorization)",
+					"id": "d1fe847b-d492-4649-806e-e9cabe23d4cd",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\":\"{{$randomCompanyName}}\",\r\n\"email_text\":\"ieva.karklina7@gmail.com\",\r\n\"full_name_text\":\"{{$randomFullName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/obj/lead"
+					},
+					"response": []
+				},
+				{
+					"name": "Mofidy lead data",
+					"id": "99df3fd1-1eb9-4fc8-8c04-10774d5d2a3f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\": \"testing patch\",\r\n\"email_text\": \"testing patch\",\r\n\"full_name_text\": \"testing patch\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "bfc5815e-7c09-4bed-804e-c5d88a6dc8bd",
+									"key": "UniqueID",
+									"value": "1694715065945x405276734702319900",
+									"description": "Unique Id of the lead that you are going to modify."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mofidy lead data (no authorization)",
+					"id": "794c903c-e42b-486e-b5e5-9c9a2b316882",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\": \"testing patch\",\r\n\"email_text\": \"testing patch\",\r\n\"full_name_text\": \"testing patch\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "63f17640-dc9e-495d-94f8-05d61817dc19",
+									"key": "UniqueID",
+									"value": "1694788871053x314576098582131100",
+									"description": "Unique Id of the lead that you are going to modify."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace lead data",
+					"id": "1fb8c2a2-8681-46c1-a6a0-08539fdef96d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\": \"testing put\",\r\n\"email_text\": \"testing put\",\r\n\"full_name_text\": \"testing put\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "c920704d-1f65-4334-a1a4-6308a845d20f",
+									"key": "UniqueID",
+									"value": "1694031260147x847629852398537500",
+									"description": "Unique Id of the lead that you are going to replace."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace lead data (no company text)",
+					"id": "4b4db04c-750b-4279-b445-33378b7d2afb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"email_text\": \"testing put\",\r\n\"full_name_text\": \"testing put\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "f45040b8-2fb0-46aa-82f9-537174d80631",
+									"key": "UniqueID",
+									"value": "1694716197922x779931635803655700",
+									"description": "Unique Id of the lead that you are going to replace."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace lead data (no email text)",
+					"id": "3888d07c-b200-4f51-87a0-1782d6ae825a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\": \"testing put\",\r\n\"full_name_text\": \"testing put\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "7d379b82-e4be-4c1c-958f-78fe3dc08f56",
+									"key": "UniqueID",
+									"value": "1694716363483x724053353758878200",
+									"description": "Unique Id of the lead that you are going to replace."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace lead data (no full_name_text)",
+					"id": "2461b4ed-e20f-46cc-89b8-b9bbf0f42468",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\":\"{{$randomCompanyName}}\",\r\n\"email_text\":\"ieva.karklina7@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "2ec0eacc-cc1e-4639-b742-e6a2644f0119",
+									"key": "UniqueID",
+									"value": "1694716620564x469263475771341200"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace lead data (company text must be =<50)",
+					"id": "691b715f-d433-40f3-a2be-324e39e9783b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa51\",\r\n\"email_text\":\"ieva.karklina7@gmail.com\",\r\n\"full_name_text\":\"{{$randomFullName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "2bfba7f0-62a8-43b9-b4b9-c462b290799f",
+									"key": "UniqueID",
+									"value": "1694716895319x437630456762100350"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace lead data (email text must be =<100)",
+					"id": "416f2230-52cb-42af-b626-13df730307dc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\":\"{{$randomCompanyName}}\",\r\n\"email_text\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh100.lv\",\r\n\"full_name_text\":\"{{$randomFullName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "f4815e53-f4b2-4fd5-a295-1be043941406",
+									"key": "UniqueID",
+									"value": "1694717029708x982956251686792400"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace lead data (full name text must be =<50)",
+					"id": "1085a7a0-3bed-4aa8-9b10-66ed523fbceb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\":\"{{$randomCompanyName}}\",\r\n\"email_text\":\"ieva.karklina7@gmail.com\",\r\n\"full_name_text\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa51\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "209d50ac-a3d1-4cbb-8513-0e374c817b4c",
+									"key": "UniqueID",
+									"value": "1694793326924x403121337033923260"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace lead data (no authorization)",
+					"id": "2be13edb-69b4-4626-ab76-aac7db0f230e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"company_text\": \"testing put\",\r\n\"email_text\": \"testing put\",\r\n\"full_name_text\": \"testing put\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "bef6b917-9cba-4229-85ca-26632d5a7036",
+									"key": "UniqueID",
+									"value": "1694788871053x314576098582131100",
+									"description": "Unique Id of the lead that you are going to replace."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete lead data",
+					"id": "96d9e511-e669-477f-9c59-36a7a7276ef8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "02273e40-a04f-4940-8697-8c9eab4b81ea",
+									"key": "UniqueID",
+									"value": "1694713832186x809852168767773800",
+									"description": "Unique Id of the lead that you are going to delete."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete lead data (no authorization)",
+					"id": "efd271b9-5398-49ca-bd05-f663c3d8cb6f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/lead/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"lead",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "ccc3c7be-139d-46b5-b80f-85dd6feec19f",
+									"key": "UniqueID",
+									"value": "1694788871053x314576098582131100",
+									"description": "Unique Id of the lead that you are going to delete."
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "7479901b-d1d0-48f2-9628-9909a232183c"
+		},
+		{
+			"name": "Notes API",
+			"item": [
+				{
+					"name": "Get list of all notes (default)",
+					"id": "5bd0c95f-56d3-4716-9168-d9d38fab9dad",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/note",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"note"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": null,
+									"description": "Number of items to fetch (maximum is 100). Default value : 50",
+									"disabled": true
+								},
+								{
+									"key": "cursor",
+									"value": null,
+									"description": "Position to start from in the list. Default value : 0",
+									"disabled": true
+								},
+								{
+									"key": "sort_field",
+									"value": null,
+									"description": "Field to sort the list on (for example 'email_text')",
+									"disabled": true
+								},
+								{
+									"key": "descending",
+									"value": null,
+									"description": "Sorting type: descending or ascending",
+									"disabled": true
+								},
+								{
+									"key": "constraints",
+									"value": null,
+									"description": "Search constraints, stringified array",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list of all notes (sorted ascending by creation date)",
+					"id": "be94d048-4be0-41b3-9158-e3686bcd2016",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/note?sort_field=Created Date&descending=false",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"note"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "",
+									"description": "Number of items to fetch (maximum is 100). Default value : 50",
+									"disabled": true
+								},
+								{
+									"key": "cursor",
+									"value": "",
+									"description": "Position to start from in the list. Default value : 0",
+									"disabled": true
+								},
+								{
+									"key": "sort_field",
+									"value": "Created Date",
+									"description": "Field to sort the list on (for example 'email_text')"
+								},
+								{
+									"key": "descending",
+									"value": "false",
+									"description": "Sorting type: descending or ascending"
+								},
+								{
+									"key": "constraints",
+									"value": "",
+									"description": "Search constraints, stringified array",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list of all notes (constraint by context_text)",
+					"id": "d1d16b20-5817-43c1-b577-a902a7a03eae",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/note?constraints=[{\"key\": \"content_text\", \"constraint_type\": \"text contains\", \"value\": \"creating 50 notes\" }]",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"note"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "",
+									"description": "Number of items to fetch (maximum is 100). Default value : 50",
+									"disabled": true
+								},
+								{
+									"key": "cursor",
+									"value": "",
+									"description": "Position to start from in the list. Default value : 0",
+									"disabled": true
+								},
+								{
+									"key": "sort_field",
+									"value": "Created Date",
+									"description": "Field to sort the list on (for example 'email_text')",
+									"disabled": true
+								},
+								{
+									"key": "descending",
+									"value": "false",
+									"description": "Sorting type: descending or ascending",
+									"disabled": true
+								},
+								{
+									"key": "constraints",
+									"value": "[{\"key\": \"content_text\", \"constraint_type\": \"text contains\", \"value\": \"creating 50 notes\" }]",
+									"description": "Search constraints, stringified array"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get note by UniqueID",
+					"id": "4705f4f3-de5d-4d3c-b9e1-eccd912c936d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/note/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"note",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "6fa52559-5eb4-4d04-9d83-a52323d124e6",
+									"key": "UniqueID",
+									"value": "1695931308704x449599293793031100",
+									"description": "Unique ID of the note to retrieve."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New note",
+					"id": "3dcce6b0-8a51-4aff-ae51-f844c0db0c47",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content_text\": \"Team10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/obj/note"
+					},
+					"response": []
+				},
+				{
+					"name": "New note with empty body",
+					"id": "53a96fde-38b2-418f-bf5a-691f982a6f60",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content_text\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/obj/note"
+					},
+					"response": []
+				},
+				{
+					"name": "New note (no authorization)",
+					"id": "fc8389c5-a13b-4bf1-9fb3-8ea6ff63acf4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content_text\": \"Team10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/obj/note"
+					},
+					"response": []
+				},
+				{
+					"name": "Modify note data",
+					"id": "7e046395-f1fa-432e-8c86-e2af1286166b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content_text\": \"add random text here\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/obj/note/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"note",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "ff8a49d4-e96f-474f-a71e-e44972040757",
+									"key": "UniqueID",
+									"value": "1678718690483x188510294479732740",
+									"description": "Unique Id of the note that you are going to modify."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace note data",
+					"id": "d7246780-d170-4117-b779-92334b4776f9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content_text\": \"add random text here 00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/obj/note/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"note",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "a4e2fd48-20f1-406a-894a-d36a3fc41026",
+									"key": "UniqueID",
+									"value": "1678718690483x188510294479732740",
+									"description": "Unique Id of the note that you are going to replace."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete note by UniqueID",
+					"id": "cccf1df7-e548-4bd7-ab05-733cd8bee947",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/note/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"note",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "591f25c5-d84b-47b1-a1a8-4d65cd90a089",
+									"key": "UniqueID",
+									"value": "1695925847001x493093934720813440",
+									"description": "Unique Id of the note that you are going to delete."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete note by UniqueID (no authorization)",
+					"id": "ef7e0daa-b770-4d24-8be6-34e88a483f40",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/obj/note/:UniqueID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"obj",
+								"note",
+								":UniqueID"
+							],
+							"variable": [
+								{
+									"id": "d062e1a0-ba83-4fe6-97b8-6a31c0991dba",
+									"key": "UniqueID",
+									"value": "1695925864581x583225661517126100",
+									"description": "Unique Id of the note that you are going to delete."
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "b8ef63cc-82a6-4f2c-ba0d-c0bb6c58df0f"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "{{authorization}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "124949a4-3cdd-456b-ba62-f61066103767",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0e1f4a0e-525d-4de7-b91c-af5435171350",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://cerebrumhubcrmlite.bubbleapps.io/api/1.1",
+			"type": "string"
+		},
+		{
+			"key": "authorization",
+			"value": "b30ca93d0a7ebe389e9326a22497bf38",
+			"type": "string"
+		}
+	]
+}
